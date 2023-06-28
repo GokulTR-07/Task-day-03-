@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    var request = new XMLHttpRequest();
+    request.open("GET","https://restcountries.com/v3.1/all",true);
+    
+    request.onload = function () {
+      if (request.status === 200){
+        console.log(request.responseText);
+
+        var data = JSON.parse(request.responseText);
+        console.log(data);
+
+        for (var i=0; i<data.length; i++){
+          console.log("Country name -",data[i].name.common +" , "+ "Region -",data[i].region +" , "+ "Sub Region -",data[i].subregion+" , "+ "Population -",data[i].population);
+        }
+      }
+      else{
+        console.log("Request failed", request.status);
+      }
+    };
+    request.send();
+    
+  </script>
+</body>
+</html>
